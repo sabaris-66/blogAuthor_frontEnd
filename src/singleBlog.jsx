@@ -16,7 +16,7 @@ const SingleBlog = () => {
   useEffect(() => {
     const getPostWithComments = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/posts/${postId}`,
+        `https://blogapi-production-17ab.up.railway.app/api/posts/${postId}`,
         { mode: "cors" }
       );
       const postWithComments = await response.json();
@@ -33,21 +33,24 @@ const SingleBlog = () => {
     event.preventDefault();
     const comment = commentRef.current.value;
     console.log(comment);
-    await fetch(`http://localhost:3000/api/posts/${postId}/comment`, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ comment }),
-    });
+    await fetch(
+      `https://blogapi-production-17ab.up.railway.app/api/posts/${postId}/comment`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ comment }),
+      }
+    );
     commentFormRef.current.reset();
     setNoOfChanges((prev) => prev + 1);
   };
 
   const deleteComment = async (commentId) => {
     await fetch(
-      `http://localhost:3000/api/allPosts/${postId}/comments/${commentId}`,
+      `https://blogapi-production-17ab.up.railway.app/api/allPosts/${postId}/comments/${commentId}`,
       {
         mode: "cors",
         method: "delete",
@@ -65,15 +68,18 @@ const SingleBlog = () => {
     const newTitle = titleRef.current.value;
     const newContent = contentRef.current.value;
 
-    await fetch(`http://localhost:3000/api/allPosts/${postId}`, {
-      mode: "cors",
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({ newTitle, newContent }),
-    });
+    await fetch(
+      `https://blogapi-production-17ab.up.railway.app/api/allPosts/${postId}`,
+      {
+        mode: "cors",
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ newTitle, newContent }),
+      }
+    );
     setNoOfChanges((prev) => prev + 1);
   };
 

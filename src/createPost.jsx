@@ -11,7 +11,7 @@ const CreatePost = () => {
     event.preventDefault();
     const title = titleRef.current.value;
     const content = contentRef.current.value;
-    await fetch("http://localhost:3000/api/blog", {
+    await fetch("https://blogapi-production-17ab.up.railway.app/api/blog", {
       mode: "cors",
       method: "post",
       headers: {

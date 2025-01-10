@@ -26,13 +26,16 @@ const App = () => {
   useEffect(() => {
     const check = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/token", {
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await fetch(
+          "https://blogapi-production-17ab.up.railway.app/api/token",
+          {
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const data = await response.json();
         console.log(data);
         setSignIn(true);
@@ -48,14 +51,17 @@ const App = () => {
 
   useEffect(() => {
     const blogPosts = async () => {
-      const result = await fetch("http://localhost:3000/api/allPosts", {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const result = await fetch(
+        "https://blogapi-production-17ab.up.railway.app/api/allPosts",
+        {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       const allPosts = await result.json();
       console.log(allPosts);
       setData(allPosts);
@@ -76,14 +82,17 @@ const App = () => {
     const password = passwordRef.current.value;
     console.log(username, password);
     try {
-      const response = await fetch(`http://localhost:3000/api/logIn`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        `https://blogapi-production-17ab.up.railway.app/api/logIn`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
       const newToken = await response.json();
       signInRef.current.reset();
       localStorage.setItem("token", newToken.token);
@@ -99,7 +108,7 @@ const App = () => {
   // useEffect(() => {
   //   const fetchBlogData = async () => {
   //     try {
-  //       const postsData = await getBlogs("http://localhost:3000/api/");
+  //       const postsData = await getBlogs("https://blogapi-production-17ab.up.railway.app/api/");
   //       console.log("bl");
   //       console.log(postsData);
   //       setData(postsData);
@@ -121,14 +130,17 @@ const App = () => {
   };
 
   const changePublishStatus = async (status, postId) => {
-    await fetch(`http://localhost:3000/api/allPosts/${postId}/${!status}`, {
-      mode: "cors",
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    await fetch(
+      `https://blogapi-production-17ab.up.railway.app/api/allPosts/${postId}/${!status}`,
+      {
+        mode: "cors",
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     setChangeStatus((prev) => prev + 1);
   };
 
