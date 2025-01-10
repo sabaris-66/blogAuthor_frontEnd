@@ -160,7 +160,7 @@ const App = () => {
           />
           <br />
           <input
-            type="text"
+            type="password"
             name="password"
             required
             ref={passwordRef}
