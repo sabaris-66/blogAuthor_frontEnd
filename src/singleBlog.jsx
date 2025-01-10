@@ -78,14 +78,18 @@ const SingleBlog = () => {
   };
 
   return (
-    <>
+    <div>
       {loading && <div>{loading}</div>}
 
       {data && (
-        <div>
-          <form action="" onSubmit={updateBlog} ref={blogRef}>
+        <div className="content">
+          <form
+            action=""
+            onSubmit={updateBlog}
+            ref={blogRef}
+            className="updateForm"
+          >
             <label htmlFor="title">
-              Title:
               <input
                 type="text"
                 id="title"
@@ -96,10 +100,11 @@ const SingleBlog = () => {
               />
             </label>
             <label htmlFor="content">
-              Content:
               <textarea
                 name="content"
                 id="content"
+                rows={10}
+                cols={28}
                 ref={contentRef}
                 defaultValue={data.spPost.content}
               ></textarea>
@@ -122,13 +127,11 @@ const SingleBlog = () => {
             />
             <button type="submit">Add</button>
           </form>
-          <ul>
+          <ul className="comments">
             {data.spPost.comments.map((comment) => {
               return (
                 <li key={comment.id}>
-                  <div>
-                    {comment.updatedAt} - {comment.comment}
-                  </div>
+                  <div className="linker">{comment.comment}</div>
                   <button onClick={() => deleteComment(comment.id)}>
                     Delete
                   </button>
@@ -138,7 +141,7 @@ const SingleBlog = () => {
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

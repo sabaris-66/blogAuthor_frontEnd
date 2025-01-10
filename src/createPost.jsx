@@ -24,10 +24,9 @@ const CreatePost = () => {
     navigate("/");
   };
   return (
-    <>
-      <form action="" ref={formRef} onSubmit={addPost}>
+    <div>
+      <form className="updateForm" action="" ref={formRef} onSubmit={addPost}>
         <label htmlFor="title">
-          Title:
           <input
             type="text"
             name="title"
@@ -38,21 +37,19 @@ const CreatePost = () => {
           />
         </label>
         <label htmlFor="content">
-          Content:
           <textarea
             name="content"
             id="content"
             ref={contentRef}
             rows={10}
-            cols={10}
+            cols={28}
             required
             placeholder="Enter Content"
           ></textarea>
         </label>
         <button type="submit">Submit</button>
       </form>
-      <Link to="/blog/11">trial</Link>
-    </>
+    </div>
   );
 };
 

@@ -1,42 +1,89 @@
-#root {
+.content {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+input,
+button {
+  padding: 10px;
+  width: 200px;
+  height: 20px;
+  text-align: center;
+  box-sizing: content-box;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border: 10px solid gray;
+  background-color: gray;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border: 10px solid gray;
+  background-color: gray;
+  color: white;
 }
 
-.card {
-  padding: 2em;
+.updateForm label {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
 }
 
-.read-the-docs {
-  color: #888;
+.signedIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+textarea {
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+ul div {
+  box-sizing: content-box;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  gap: 30px;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+linker {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  box-sizing: content-box;
 }

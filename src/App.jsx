@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import "./App.css";
 
 const getBlogs = async (url) => {
   const response = await fetch(url, {
@@ -132,9 +133,10 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="content">
       <h1>Saba's Blog Page</h1>
-      <div>Welcome Everyone!</div>
+      <h2>Welcome Saba!</h2>
+      <br />
       {!signIn && (
         <form action="" ref={signInRef} onSubmit={handleSignIn}>
           <input
@@ -144,6 +146,7 @@ const App = () => {
             placeholder="Enter username"
             ref={usernameRef}
           />
+          <br />
           <input
             type="text"
             name="password"
@@ -151,31 +154,39 @@ const App = () => {
             ref={passwordRef}
             placeholder="Enter password"
           />
+          <br />
           <button type="submit">Submit</button>
         </form>
       )}
       {signIn && (
-        <>
+        <div className="signedIn">
           <button onClick={handleLogOut}>Log Out</button>
           <button onClick={() => navigate("/post")}>Add Post</button>
           {/* <button onClick={() => navigate("/blog/11")}>redirect</button> */}
+        </div>
+      )}
+      {signIn && data && (
+        <>
+          <h2>Posts</h2>
+          <ul className="posts">
+            {data.posts.map((post) => {
+              return (
+                <div key={post.title}>
+                  <Link className="linker" to={`/blog/${post.id}`}>
+                    {post.title}
+                  </Link>
+                  <button
+                    onClick={() => changePublishStatus(post.published, post.id)}
+                  >
+                    Status: {post.published ? "Published" : "Not Published"}
+                  </button>
+                </div>
+              );
+            })}
+          </ul>
         </>
       )}
-      {signIn &&
-        data &&
-        data.posts.map((post) => {
-          return (
-            <li key={post.title}>
-              <Link to={`/blog/${post.id}`}>{post.title}</Link>
-              <button
-                onClick={() => changePublishStatus(post.published, post.id)}
-              >
-                Status: {post.published ? "Published" : "Not Published"}
-              </button>
-            </li>
-          );
-        })}
-    </>
+    </div>
   );
 };
 
