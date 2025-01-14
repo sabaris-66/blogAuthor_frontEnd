@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     const check = async () => {
-      try {
+      if (localStorage.getItem("token")) {
         const response = await fetch(
           "https://blogapi-production-17ab.up.railway.app/api/token",
           {
@@ -37,14 +37,13 @@ const App = () => {
           }
         );
         const data = await response.json();
-        console.log(data);
+        if (data.error) {
+          localStorage.clear();
+          setSignIn(false);
+          return;
+        }
         setSignIn(true);
-      } catch (error) {
-        localStorage.clear();
-        console.log("token expired");
-        setSignIn(false);
       }
-      console.log(localStorage.getItem("token"));
     };
     check();
   }, []);
